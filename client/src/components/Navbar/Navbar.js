@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { AppBar, Typography, Avatar, Toolbar, Button } from '@material-ui/core';
 import useStyles from './styles';
 
 const Navbar = () => {
-
+    const dispatch = useDispatch();
     const classes = useStyles();
-    const user = null;
+    const history = useHistory();
+    const location = useLocation();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    const logout = () => {
+        dispatch({type: 'LOGOUT'});
+        history.push('/');
+        setUser(null);
+    };
+
+    // retrieve the user from local storage
+
+    useEffect(() => {
+        // google auth
+        //check if the token exists. if it does, send it to the token variable
+        const token = user?.token;
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+        //manual sign up here
+    }, [location]);
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
@@ -20,9 +41,9 @@ const Navbar = () => {
                 {user ? (
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
-                        <Typography className={classes.userName} variant="h6">{}user.result.name</Typography>
+                        <Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
                         {/* logout button */}
-                        <Button variant="contained" className={classes.logout} color="secondary">Logout</Button>
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>
                 // if not logged in, show button to login
                 ) : (
