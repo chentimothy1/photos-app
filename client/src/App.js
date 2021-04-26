@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import camera from './images/camera.jpg';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 
