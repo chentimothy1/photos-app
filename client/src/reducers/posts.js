@@ -8,6 +8,9 @@ export default (posts = [], action) => {
             return action.payload;
         case 'CREATE':
             return [...posts, action.payload];    
+        // if the post._id is not equal to the action.payload, remove it 
+        case 'DELETE':
+            return posts.filter((post) => post._id !== action.payload);
         default:
             return posts;
     }
