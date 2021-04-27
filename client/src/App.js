@@ -8,7 +8,6 @@ import Auth from './components/Auth/Auth';
 
 const App = () => {
 
-
     return (
         <BrowserRouter>
         <Container maxwidth="lg">
@@ -22,6 +21,5 @@ const App = () => {
         </BrowserRouter>
     );
 }
-
 
 export default App;

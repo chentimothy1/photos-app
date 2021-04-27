@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import decode from 'jwt-decode';
 
@@ -15,26 +15,23 @@ const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const logout = () => {
-        dispatch({type: 'LOGOUT'});
+        dispatch({ type: 'LOGOUT' });
         history.push('/');
         setUser(null);
     };
-
-    // retrieve the user from local storage
 
     useEffect(() => {
         // google auth
         //check if the token exists. if it does, send it to the token variable
         const token = user?.token;
 
-        if(token) {
+        if (token) {
             const decodedToken = decode(token);
 
-            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
-        //manual sign up here
     }, [location]);
 
     return (
@@ -52,13 +49,12 @@ const Navbar = () => {
                         {/* logout button */}
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>
-                // if not logged in, show button to login
+                    // if not logged in, show button to login
                 ) : (
                     <Button component={Link} to="/auth" variant="contained" color="primary">Sign in</Button>
                 )}
             </Toolbar>
         </AppBar>
-
     )
 }
 

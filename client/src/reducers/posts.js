@@ -1,6 +1,5 @@
 import { CREATE, UPDATE, DELETE, FETCH_ALL } from '../constants/actionTypes';
 
-
 export default (posts = [], action) => {
     switch (action.type) {
         // if post._id is equal to the action.payload (the updated post), then return the action.payload
@@ -10,7 +9,7 @@ export default (posts = [], action) => {
         case FETCH_ALL:
             return action.payload;
         case CREATE:
-            return [...posts, action.payload];    
+            return [...posts, action.payload];
         // if the post._id is not equal to the action.payload, remove it 
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);

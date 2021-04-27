@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth'
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 export const Auth = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -23,9 +23,9 @@ export const Auth = () => {
         e.preventDefault();
 
         //two types of submit - sign in and sign up
-        if(isSignedUp) {
-                dispatch(signup(formData, history))
-        }else {
+        if (isSignedUp) {
+            dispatch(signup(formData, history))
+        } else {
             dispatch(signin(formData, history))
 
         }
@@ -47,7 +47,7 @@ export const Auth = () => {
         const token = res?.tokenId;
 
         try {
-            dispatch({ type: 'AUTH', data: { result, token }});
+            dispatch({ type: 'AUTH', data: { result, token } });
 
             // redirects back to home 
             history.push('/');
@@ -77,7 +77,6 @@ export const Auth = () => {
                                 <>
                                     <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half></Input>
                                     <Input name="lastName" label="Last Name" handleChange={handleChange} half ></Input>
-
                                 </>
                             )
                         }
@@ -119,14 +118,11 @@ export const Auth = () => {
                             <Button onClick={switchModes}>
                                 {isSignedUp ? 'Already have an account? Sign In' : "No account? Sign Up"}
                             </Button>
-
                         </Grid>
-
                     </Grid>
                 </form>
             </Paper>
         </Container>
-
     )
 }
 

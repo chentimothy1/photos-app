@@ -3,7 +3,6 @@ import useStyles from './styles';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
-
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
@@ -25,7 +24,6 @@ const Post = ({ post, setCurrentId }) => {
                     <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
                 );
         }
-
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
     };
 
@@ -40,14 +38,14 @@ const Post = ({ post, setCurrentId }) => {
             {/* edit button */}
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
 
-            <div className={classes.overlay2}>
-                <Button
-                    style={{ color: 'white' }}
-                    size="small"
-                    onClick={() => setCurrentId(post._id)}>
-                    <MoreHorizIcon fontSize="default" />
-                </Button>
-            </div>
+                <div className={classes.overlay2}>
+                    <Button
+                        style={{ color: 'white' }}
+                        size="small"
+                        onClick={() => setCurrentId(post._id)}>
+                        <MoreHorizIcon fontSize="default" />
+                    </Button>
+                </div>
             )}
 
             <div className={classes.details}>
@@ -66,6 +64,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
                     <Likes />
                 </Button>
+
                 {/* limit deletions to user's own posts */}
                 {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
                     <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
