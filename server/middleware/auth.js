@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 
-
+const secret = 'test';
 //clicks the like button -> auth middleware(). if the authmiddleware says he can like it, we send it to the 
 // like middleware 
+
 
 const auth = async (req, res, next) => {
     try {
@@ -10,13 +11,14 @@ const auth = async (req, res, next) => {
         const isCustomAuth = token.length < 500;
         
         let decodedData;
+
         if(token && isCustomAuth) {
-            decodedData = jwt.verify(token, 'test');
-            req.userId = decodedData ?.indexOf;
+            decodedData = jwt.verify(token, secret);
+            req.userId = decodedData?.id;
         } else {
             decodedData = jwt.decode(token);
 
-            req.userId = decodedData ?.sub;
+            req.userId = decodedData?.sub;
         }
 
         next();

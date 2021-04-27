@@ -7,7 +7,7 @@ import { GoogleLogin } from 'react-google-login';
 import GoogleIcon from './GoogleIcon';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { signIn, signUp } from '../../actions/auth'
+import { signin, signup } from '../../actions/auth'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
@@ -16,7 +16,6 @@ export const Auth = () => {
     const [isSignedUp, setIsSignedUp] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
-    const state = null;
     const classes = useStyles();
     const [formData, setFormData] = useState(initialState);
 
@@ -25,9 +24,9 @@ export const Auth = () => {
 
         //two types of submit - sign in and sign up
         if(isSignedUp) {
-                dispatch(signUp(formData, history))
+                dispatch(signup(formData, history))
         }else {
-            dispatch(signIn(formData, history))
+            dispatch(signin(formData, history))
 
         }
     };
@@ -40,7 +39,7 @@ export const Auth = () => {
 
     const switchModes = () => {
         setIsSignedUp((prevIsSignedUp) => !prevIsSignedUp);
-        handleShowPassword(false);
+        setShowPassword(false);
     };
 
     const googleSuccess = async (res) => {

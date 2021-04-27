@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import decode from 'jwt-decode';
 
 import { AppBar, Typography, Avatar, Toolbar, Button } from '@material-ui/core';
 import useStyles from './styles';
@@ -25,6 +26,12 @@ const Navbar = () => {
         // google auth
         //check if the token exists. if it does, send it to the token variable
         const token = user?.token;
+
+        if(token) {
+            const decodedToken = decode(token);
+
+            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
         //manual sign up here
