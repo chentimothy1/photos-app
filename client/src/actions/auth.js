@@ -3,11 +3,11 @@ import * as api from '../api';
 
 
 export const signin = (formData, router) => async (dispatch) => {
-    
+
     try {
         const { data } = await api.signIn(formData);
 
-        dispatch({type: AUTH, data })
+        dispatch({ type: AUTH, data })
         //log the user in
         router.push('/')
 
@@ -17,7 +17,7 @@ export const signin = (formData, router) => async (dispatch) => {
 };
 
 export const signup = (formData, router) => async (dispatch) => {
-    
+
     try {
         const { data } = await api.signUp(formData);
 
