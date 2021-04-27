@@ -73,3 +73,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Get the Form component in Auth. Once all the inputs are submitted, we dispatch actions, for example the signin action. We provide it the formData and history. Once dispatched, we go to actions which makes a call to the API which makes a post request (database, return certain things to me). From the action creator, we dispatch a few things then it flows to the reducers. This is repeated for all the other processes, such as signup.
 
+### References
+
+JavaScript Mastery: https://www.youtube.com/watch?v=ngc9gnGgUdA

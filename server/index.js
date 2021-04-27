@@ -23,6 +23,10 @@ app.use('/posts', postRoutes);
 //route for users
 app.use('/user', userRoutes);
 
+app.get('/', (req, res) => {
+    res.send('This is the backend for photos');
+});
+
 
 // const CONNECTION_URL = 'mongodb+srv://timothychen:timothyspassword@cluster0.ixmty.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
