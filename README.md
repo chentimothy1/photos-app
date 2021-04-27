@@ -2,4 +2,4 @@
 
 Final Project for CS5610
 
-Deployment links:
+npm install && npm start for both client and server
